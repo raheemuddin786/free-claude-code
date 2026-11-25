@@ -67,10 +67,6 @@ def get_validated_stream_addrinfos_for_egress(
 
     if policy.allow_private_network_targets:
         return _stream_getaddrinfo_or_raise(host, port)
-
-    host_lower = host.lower()
-    if host_lower == "localhost" or host_lower.endswith(".localhost"):
-        raise WebFetchEgressViolation("localhost targets are not allowed for web_fetch")
     if host_lower.endswith(".local"):
         raise WebFetchEgressViolation(".local hostnames are not allowed for web_fetch")
 
